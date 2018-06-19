@@ -3,7 +3,7 @@ from django.db import connections
 from django.db.models import Count
 from django.http import JsonResponse
 from django.contrib import messages
-
+import json
 
 import requests
 
@@ -33,9 +33,12 @@ def loging(request):
         print response.status_code
         if response.status_code == 200:
            # messages.success(request,"Login successful")
+            employees=getEmployeers()
 
 
-            return render(request,'homeApp/graph.html')
+
+
+            return render(request,'homeApp/graph.html',{'employees':json.dumps(employees)})
         else:
             messages.error(request,"Login credetials are wrong")
 
@@ -58,11 +61,11 @@ def profile(request):
 def graph(request):
     heade = {'Authorization': 'token {}'.format('2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678')}
     url = "http://staging.tangent.tngnt.co/api/employee/"
-    employeers = requests.get(url, headers=heade)
-    print employeers.json()
+    employees = requests.get(url, headers=heade)
+    print employees.json()
 
 
-    return render(request, 'homeApp/graph.html')
+    return render(request, 'homeApp/graph.html',{'empolyees':employees})
 
 def getUser():
     heade = {'Authorization': 'token {}'.format('2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678')}
@@ -70,21 +73,21 @@ def getUser():
     user = requests.get(url, headers=heade)
     print user.json()
 
-    return user
+    return user.json()
 
 def getEmployeers():
     heade = {'Authorization': 'token {}'.format('2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678')}
     url = "http://staging.tangent.tngnt.co/api/employee/"
     employeers = requests.get(url, headers=heade)
     print employeers.json()
-    return employeers
+    return employeers.json()
 
 def getMyProfile():
     heade = {'Authorization': 'token {}'.format('2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678')}
     url = "http://staging.tangent.tngnt.co/api/employee/me/"
     profile = requests.get(url, headers=heade)
     print profile.json()
-    return profile
+    return profile.json()
 
 
 

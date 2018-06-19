@@ -23,34 +23,38 @@
 		<script src="{% static 'js/modernizr.custom.js' %}"></script>
 
 
-
-
-
-    <!--old code start here-->
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-     <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
-<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
- <script src="http://code.highcharts.com/highcharts.js"></script>
-     <!--<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">-->
 
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+ <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+ <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
 <!-- optional -->
-<script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
-
-    <!--<style>-->
-
-        <!--body {-->
-	        <!--background: #34495e;-->
-         <!--}-->
 
 
-    <!--</style>-->
+    <style>
+
+        body {
+	        background: #34495e;
+         }
+
+
+    </style>
 </head>
 <body>
 
+<div id="container" style="height: 200px">
+</div>
+<div style="width: 100%; margin: 0 auto; height: 100px; text-align:center;">
+<div >
 
+
+</div>
+<table id="example" class="display" width="100%">
+
+</table>
+
+</div>
 
 <div class="container">
 			<ul id="gn-menu" class="gn-menu-main">
@@ -59,10 +63,6 @@
 					<nav class="gn-menu-wrapper">
 						<div class="gn-scroller">
 							<ul class="gn-menu">
-								<!-- <li class="gn-icon gn-icon-download">
-									<input placeholder="Search" type="search" class="gn-search">
-									<a class="gn-icon gn-icon-search"><span>PIE CHART</span></a>
-								</li> -->
 								<li>
 									<a class="gn-icon gn-icon-download" href="http://127.0.0.1:8000/graph">BAR GRAPH</a>
 									<ul class="gn-submenu">
@@ -73,12 +73,6 @@
 								<li><a class="gn-icon gn-icon-cog">SCATTER PLOT</a></li>
 								<li><a class="gn-icon gn-icon-help">PIE CHART</a></li>
 								<li>
-									<!-- <a class="gn-icon gn-icon-archive">PIE CHART</a> -->
-								<!-- 	<ul class="gn-submenu">
-										<li><a class="gn-icon gn-icon-article">Articles</a></li>
-										<li><a class="gn-icon gn-icon-pictures">Images</a></li>
-										<li><a class="gn-icon gn-icon-videos">Videos</a></li>
-									</ul> -->
 								</li>
 							</ul>
 						</div><!-- /gn-scroller -->
@@ -88,11 +82,8 @@
 				<li><a class="codrops-icon codrops-icon-prev" href="http://127.0.0.1:8000/"><span>About</span></a></li>
 				<li><a class="codrops-icon codrops-icon-drop" href="http://127.0.0.1:8000/"><span>Contact Us</span></a></li>
 			</ul>
-			<!--<header>-->
-				<!--&lt;!&ndash;<h1>HLT DASHBOARD <span>Human Language Technology</span></h1>&ndash;&gt;-->
 
 
-			<!--</header>-->
 
 
 
@@ -116,131 +107,309 @@
 
 
 
-<!--old code start here-->
 
-
-<div style="width: 50%; margin: 0 auto; height: 100px; text-align:center;">
-    <h3 ><marquee behavior="alternate">HLT Dashboard..</marquee></h3>
-
-</div>
-
-<div style="width: 50%; margin: 0 auto; height: 100px; text-align:center;">
-	<a href="javascript:void(0);" class="btn btn-success fa fa-line-chart" id="line">Line Chart</a>
-	<a href="javascript:void(0);" class="btn btn-success fa fa-bar-chart" id="bar">Bar Chart</a>
-	<a href="javascript:void(0);" class="btn btn-success fa fa-bar-chart" id="column">Column Chart</a>
-	<a href="javascript:void(0);" class="btn btn-success fa fa-pie-chart" id="pie">Pie Chart</a>
-
-
-</div>
-
-
-
-
-
-
-
-<div id="container" style="height: 300px"></div>
 
 
 
 <script type="text/javascript">
+$(document).ready(function() {
 
-
-var ndebele={{ndebele}};
-var english={{english}};
-var xhosa={{xhosa}};
-var zulu={{zulu}};
-
-
-
-var chartype='column';
-setChartType(chartype);
-
-$('.btn').click(function(){
-		//get the value from 'a' tag
-		var chartype = $(this).attr('id');
-		setChartType(chartype);
-	});
-
-
-function setChartType(chartype) {
-
-$(function () {
+var employees = {{employees|safe}};
+console.log(employees);
 
 
 
+var emplo=[
+  {
+    "phone_number": "0824478876",
+    "gender": "M",
+    "github_user": "Captain",
+    "days_to_birthday": 145,
+    "age": 36,
+    "race": "B",
+    "user": {
+      "username": "captain",
+      "first_name": "Captain",
+      "last_name": "America",
+      "is_active": true,
+      "email": "captain@gmail.com",
+      "is_staff": true,
+      "id": 8
+    },
+    "years_worked": 3,
+    "birth_date": "1981-07-30",
+    "position": {
+      "sort": 0,
+      "level": "Senior",
+      "id": 1,
+      "name": "Front-end Developer"
+    },
+    "email": "captain@gmail.com"
+  },
+  {
+    "phone_number": "0837788876",
+    "gender": "M",
+    "github_user": "Gary",
+    "days_to_birthday": 155,
+    "age": 27,
+    "race": "W",
+    "user": {
+      "username": "employee4",
+      "first_name": "Gary",
+      "last_name": "Player",
+      "is_active": true,
+      "email": "gary.player@gmail.com",
+      "is_staff": true,
+      "id": 11
+    },
+    "years_worked": 1,
+    "birth_date": "1990-08-09",
+    "position": {
+      "sort": 0,
+      "level": "Junior",
+      "id": 2,
+      "name": "Back-end Developer"
+    },
+    "email": "gary.player@gmail.com"
+  },
+  {
+    "phone_number": "0875677663",
+    "gender": "M",
+    "github_user": "TangentSolutions",
+    "days_to_birthday": 291,
+    "age": 34,
+    "race": "W",
+    "user": {
+      "username": "admin",
+      "first_name": "Ian",
+      "last_name": "Roberts",
+      "is_active": true,
+      "email": "ian@tangentsolutions.co.za",
+      "is_staff": true,
+      "id": 5
+    },
+    "years_worked": 7,
+    "birth_date": "1983-12-23",
+    "position": {
+      "sort": 0,
+      "level": "Senior",
+      "id": 1,
+      "name": "Front-end Developer"
+    },
+    "email": "ian@tangentsolutions.co.za"
+  },
+  {
+    "phone_number": "0832322778",
+    "gender": "M",
+    "github_user": "zuma",
+    "days_to_birthday": 186,
+    "age": 46,
+    "race": "B",
+    "user": {
+      "username": "jacob.zuma",
+      "first_name": "Jacob",
+      "last_name": "Zuma",
+      "is_active": true,
+      "email": "zumu@gov.co.za",
+      "is_staff": true,
+      "id": 4
+    },
+    "years_worked": 4,
+    "birth_date": "1971-09-09",
+    "position": {
+      "sort": 0,
+      "level": "Junior",
+      "id": 2,
+      "name": "Back-end Developer"
+    },
+    "email": "zumu@gov.co.za"
+  },
+  {
+    "phone_number": "0873722777",
+    "gender": "M",
+    "github_user": "JamesDean",
+    "days_to_birthday": 23,
+    "age": 37,
+    "race": "I",
+    "user": {
+      "username": "james.dean",
+      "first_name": "James",
+      "last_name": "Dean",
+      "is_active": true,
+      "email": "james@email.com",
+      "is_staff": true,
+      "id": 2
+    },
+    "years_worked": 2,
+    "birth_date": "1980-03-30",
+    "position": {
+      "sort": 0,
+      "level": "Senior",
+      "id": 1,
+      "name": "Front-end Developer"
+    },
+    "email": "james@email.com"
+  },
+  {
+    "phone_number": "0827767889",
+    "gender": "M",
+    "github_user": "bloggs",
+    "days_to_birthday": 300,
+    "age": 23,
+    "race": "N",
+    "user": {
+      "username": "employee1",
+      "first_name": "Joe Employee 1",
+      "last_name": "Bloggs",
+      "is_active": true,
+      "email": "bloggs@gmail.com",
+      "is_staff": true,
+      "id": 9
+    },
+    "years_worked": 1,
+    "birth_date": "1995-01-01",
+    "position": {
+      "sort": 0,
+      "level": "Senior",
+      "id": 1,
+      "name": "Front-end Developer"
+    },
+    "email": "bloggs@gmail.com"
+  },
+  {
+    "phone_number": "0828899987",
+    "gender": "M",
+    "github_user": "PravG",
+    "days_to_birthday": 280,
+    "age": 66,
+    "race": "B",
+    "user": {
+      "username": "pravin.gordhan",
+      "first_name": "Pravin",
+      "last_name": "Gordhan",
+      "is_active": true,
+      "email": "pravin@axedmps.com",
+      "is_staff": true,
+      "id": 12
+    },
+    "years_worked": 1,
+    "birth_date": "1951-12-12",
+    "position": {
+      "sort": 0,
+      "level": "Senior",
+      "id": 3,
+      "name": "Project Manager"
+    },
+    "email": "pravin@axedmps.com"
+  },
+  {
+    "phone_number": "0872828817",
+    "gender": "F",
+    "github_user": "suebeans",
+    "days_to_birthday": 198,
+    "age": 27,
+    "race": "C",
+    "user": {
+      "username": "sue.beans",
+      "first_name": "Sue",
+      "last_name": "Beans",
+      "is_active": true,
+      "email": "sue@tangent.co.za",
+      "is_staff": true,
+      "id": 6
+    },
+    "years_worked": 2,
+    "birth_date": "1990-09-21",
+    "position": {
+      "sort": 0,
+      "level": "Junior",
+      "id": 2,
+      "name": "Back-end Developer"
+    },
+    "email": "sue@tangent.co.za"
+  },
+  {
+    "phone_number": "0744925023",
+    "gender": "M",
+    "github_user": "SuperGitMan",
+    "days_to_birthday": 347,
+    "age": 37,
+    "race": "W",
+    "user": {
+      "username": "employee3",
+      "first_name": "Super",
+      "last_name": "Man",
+      "is_active": true,
+      "email": "super.man@tangent.co.za",
+      "is_staff": true,
+      "id": 3
+    },
+    "years_worked": 1,
+    "birth_date": "1981-02-17",
+    "position": {
+      "sort": 0,
+      "level": "Senior",
+      "id": 1,
+      "name": "Front-end Developer"
+    },
+    "email": "mike@tangentsolutions.co.za"
+  },
+  {
+    "phone_number": "0728998700",
+    "gender": "F",
+    "github_user": "thandi",
+    "days_to_birthday": 338,
+    "age": 30,
+    "race": "B",
+    "user": {
+      "username": "employee2",
+      "first_name": "Thandi",
+      "last_name": "Plain",
+      "is_active": true,
+      "email": "thandi@gmail.com",
+      "is_staff": true,
+      "id": 10
+    },
+    "years_worked": 1,
+    "birth_date": "1988-02-08",
+    "position": {
+      "sort": 0,
+      "level": "Senior",
+      "id": 3,
+      "name": "Project Manager"
+    },
+    "email": "thandi@gmail.com"
+  }
+];
 
-    $('#container').highcharts({
-        chart: {
-            type: chartype
-        },
-        title: {
-            text: 'Languages From twitter'
-        },
-        subtitle: {
-            text: 'Source: twitter.com'
-        },
-        xAxis: {
-            categories: [
-                'Pretoria',
-                'JHB',
-                'DBN',
-
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Number Of tweets'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-             }]
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-
-            name: 'Isindebele',
-            data:[ndebele[0],ndebele[1],ndebele[2]]
-
-        }, {
-
-            name: 'English',
-            data: [english[0],english[1],english[2]]
-
-        }, {
-
-            name: 'Xhosa',
-            data: [xhosa[0],xhosa[1],xhosa[2]]
-
-        }, {
-
-            name: 'IsiZulu',
-            data: [zulu[0],zulu[1],zulu[2]]
-
-        }]
-    });
-});
-}
+    $('#example').DataTable( {
+        data: employees,
+        columns: [
+        	{ "data": "user.first_name" },
+        	{ "data": "user.last_name" },
+        	{ "data": "user.username" },
+        	{ "data": "user.is_active" },
+        	{ "data": "user.is_staff" },
+        	{ "data": "user.id" },
+        	{ "data": "position.name" },
+        	{ "data": "position.level" },
+        	{ "data": "position.id" },
+            { "data": "phone_number" },
+            { "data": "gender" },
+            { "data": "github_user" },
+            { "data": "days_to_birthday." },
+            { "data": "age" },
+            { "data": "race" },
+            { "data": "years_worked" },
+            { "data": "birth_date" },
+            { "data": "email" }
+        ]
+    } );
 
 
 
+
+} );
 
 
 
