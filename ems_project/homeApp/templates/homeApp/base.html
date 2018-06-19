@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+
+<html >
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thabo's blog</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+     <link rel="stylesheet" href="{% static 'css/component.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+
+		<link rel="shortcut icon" href="../favicon.ico">
+
+		<script src="{% static 'js/modernizr.custom.js' %}"></script>
+    	<script src="{% static 'js/classie.js' %}"></script>
+		<!--<script src="js/gnmenu.js"></script>-->
+        <script src="{% static 'js/gnmenu.js' %}"></script>
+        <script src="{% static 'js/classie.js' %}"></script>
+    <meta name="HandheldFriendly" content="true" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black" /><meta name="apple-mobile-web-app-title" content="Phaser App"><meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
+
+
+<style>
+#popUpWindow{
+  //background: lightblue;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<!-- <li class="gn-icon gn-icon-download">
+									<input placeholder="Search" type="search" class="gn-search">
+									<a class="gn-icon gn-icon-search"><span>PIE CHART</span></a>
+								</li> -->
+								<li>
+									<a class="gn-icon gn-icon-download" href="http://127.0.0.1:8000/graph">BAR GRAPH</a>
+									<ul class="gn-submenu">
+										<li><a class="gn-icon gn-icon-illustrator">GEOLOCATION</a></li>
+										<li><a class="gn-icon gn-icon-photoshop">LINE CHART</a></li>
+									</ul>
+								</li>
+								<li><a class="gn-icon gn-icon-cog">SCATTER PLOT</a></li>
+								<li><a class="gn-icon gn-icon-help">PIE CHART</a></li>
+								<li>
+									<!-- <a class="gn-icon gn-icon-archive">PIE CHART</a> -->
+								<!-- 	<ul class="gn-submenu">
+										<li><a class="gn-icon gn-icon-article">Articles</a></li>
+										<li><a class="gn-icon gn-icon-pictures">Images</a></li>
+										<li><a class="gn-icon gn-icon-videos">Videos</a></li>
+									</ul> -->
+								</li>
+							</ul>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a href="http://127.0.0.1:8000/">Home</a></li>
+				<li><a class="codrops-icon codrops-icon-prev" href="http://127.0.0.1:8000/"><span>About</span></a></li>
+				<li><a class="codrops-icon codrops-icon-drop" href="http://127.0.0.1:8000/"><span>Contact Us</span></a></li>
+			</ul>
+
+			<!--<header>-->
+				<!--<h1>HLT DASHBOARD <span>Human Language Technology</span></h1>-->
+
+
+			<!--</header>-->
+        <script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+
+
+		</div><!-- /container -->
+
+
+{% block content %}
+{% endblock %}
+
+</body>
+
+
+
+</html>

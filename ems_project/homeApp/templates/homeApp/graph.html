@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thabo's blog</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+     <link rel="stylesheet" href="{% static 'css/component.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+
+		<link rel="shortcut icon" href="../favicon.ico">
+
+		<script src="{% static 'js/modernizr.custom.js' %}"></script>
+
+
+
+
+
+    <!--old code start here-->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+     <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script src="http://code.highcharts.com/highcharts.js"></script>
+     <!--<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">-->
+
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+<!-- optional -->
+<script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
+
+    <!--<style>-->
+
+        <!--body {-->
+	        <!--background: #34495e;-->
+         <!--}-->
+
+
+    <!--</style>-->
+</head>
+<body>
+
+
+
+<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<!-- <li class="gn-icon gn-icon-download">
+									<input placeholder="Search" type="search" class="gn-search">
+									<a class="gn-icon gn-icon-search"><span>PIE CHART</span></a>
+								</li> -->
+								<li>
+									<a class="gn-icon gn-icon-download" href="http://127.0.0.1:8000/graph">BAR GRAPH</a>
+									<ul class="gn-submenu">
+										<li><a class="gn-icon gn-icon-illustrator">GEOLOCATION</a></li>
+										<li><a class="gn-icon gn-icon-photoshop">LINE CHART</a></li>
+									</ul>
+								</li>
+								<li><a class="gn-icon gn-icon-cog">SCATTER PLOT</a></li>
+								<li><a class="gn-icon gn-icon-help">PIE CHART</a></li>
+								<li>
+									<!-- <a class="gn-icon gn-icon-archive">PIE CHART</a> -->
+								<!-- 	<ul class="gn-submenu">
+										<li><a class="gn-icon gn-icon-article">Articles</a></li>
+										<li><a class="gn-icon gn-icon-pictures">Images</a></li>
+										<li><a class="gn-icon gn-icon-videos">Videos</a></li>
+									</ul> -->
+								</li>
+							</ul>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a href="http://127.0.0.1:8000/">Home</a></li>
+				<li><a class="codrops-icon codrops-icon-prev" href="http://127.0.0.1:8000/"><span>About</span></a></li>
+				<li><a class="codrops-icon codrops-icon-drop" href="http://127.0.0.1:8000/"><span>Contact Us</span></a></li>
+			</ul>
+			<!--<header>-->
+				<!--&lt;!&ndash;<h1>HLT DASHBOARD <span>Human Language Technology</span></h1>&ndash;&gt;-->
+
+
+			<!--</header>-->
+
+
+
+		</div><!-- /container -->
+
+        <script src="{% static 'js/classie.js' %}"></script>
+		<!--<script src="js/gnmenu.js"></script>-->
+        <script src="{% static 'js/gnmenu.js' %}"></script>
+        <script src="{% static 'js/classie.js' %}"></script>
+
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+
+
+
+
+
+
+
+
+
+
+<!--old code start here-->
+
+
+<div style="width: 50%; margin: 0 auto; height: 100px; text-align:center;">
+    <h3 ><marquee behavior="alternate">HLT Dashboard..</marquee></h3>
+
+</div>
+
+<div style="width: 50%; margin: 0 auto; height: 100px; text-align:center;">
+	<a href="javascript:void(0);" class="btn btn-success fa fa-line-chart" id="line">Line Chart</a>
+	<a href="javascript:void(0);" class="btn btn-success fa fa-bar-chart" id="bar">Bar Chart</a>
+	<a href="javascript:void(0);" class="btn btn-success fa fa-bar-chart" id="column">Column Chart</a>
+	<a href="javascript:void(0);" class="btn btn-success fa fa-pie-chart" id="pie">Pie Chart</a>
+
+
+</div>
+
+
+
+
+
+
+
+<div id="container" style="height: 300px"></div>
+
+
+
+<script type="text/javascript">
+
+
+var ndebele={{ndebele}};
+var english={{english}};
+var xhosa={{xhosa}};
+var zulu={{zulu}};
+
+
+
+var chartype='column';
+setChartType(chartype);
+
+$('.btn').click(function(){
+		//get the value from 'a' tag
+		var chartype = $(this).attr('id');
+		setChartType(chartype);
+	});
+
+
+function setChartType(chartype) {
+
+$(function () {
+
+
+
+
+    $('#container').highcharts({
+        chart: {
+            type: chartype
+        },
+        title: {
+            text: 'Languages From twitter'
+        },
+        subtitle: {
+            text: 'Source: twitter.com'
+        },
+        xAxis: {
+            categories: [
+                'Pretoria',
+                'JHB',
+                'DBN',
+
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Number Of tweets'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+             }]
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+
+            name: 'Isindebele',
+            data:[ndebele[0],ndebele[1],ndebele[2]]
+
+        }, {
+
+            name: 'English',
+            data: [english[0],english[1],english[2]]
+
+        }, {
+
+            name: 'Xhosa',
+            data: [xhosa[0],xhosa[1],xhosa[2]]
+
+        }, {
+
+            name: 'IsiZulu',
+            data: [zulu[0],zulu[1],zulu[2]]
+
+        }]
+    });
+});
+}
+
+
+
+
+
+
+
+
+</script>
+</body>
+
+</html>
