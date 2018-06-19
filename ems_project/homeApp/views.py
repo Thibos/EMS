@@ -59,13 +59,9 @@ def profile(request):
 
 
 def graph(request):
-    heade = {'Authorization': 'token {}'.format('2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678')}
-    url = "http://staging.tangent.tngnt.co/api/employee/"
-    employees = requests.get(url, headers=heade)
-    print employees.json()
+    employees = getEmployeers()
 
-
-    return render(request, 'homeApp/graph.html',{'empolyees':employees})
+    return render(request, 'homeApp/graph.html', {'employees': json.dumps(employees)})
 
 def getUser():
     heade = {'Authorization': 'token {}'.format('2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678')}
