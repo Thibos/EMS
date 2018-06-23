@@ -53,9 +53,10 @@ def loging(request):
 def profile(request):
     """1.get the token from the server using login credetials
         2.on login successful then open the dashboard with employees data"""
+    myProfile=getMyProfile()
 
 
-    return render(request,'homeApp/loging.html')
+    return render(request,'homeApp/profile.html',{"myProfile":json.dumps(myProfile)})
 
 
 def graph(request):

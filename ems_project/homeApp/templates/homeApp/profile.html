@@ -1,10 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load staticfiles %}
+<html>
 <head>
+
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thabo's blog</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js" charset="utf-8"></script>
+     <script src = "{% static 'js/crossfilter.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/1.7.5/dc.js"></script>
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/1.7.5/dc.css"/>
+	<!--<script src="{% static 'js/d3.js' %}"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/dc/3.0.4/dc.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.2/dc.js"></script>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/3.0.4/dc.css" />
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>-->
+
+
+      <!--<script src = "{% static 'js/dc.js' %}"></script>-->
+
+
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+     <link rel="stylesheet" href="{% static 'css/component.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+
+		<link rel="shortcut icon" href="../favicon.ico">
+
+		<script src="{% static 'js/modernizr.custom.js' %}"></script>
+
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+ <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+ <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
+<!-- optional -->
+
+
+    <style>
+
+        body {
+	        background: #34495e;
+         }
+
+
+    </style>
 </head>
 <body>
 
+<div id="container" style="height: 200px">
+</div>
+<div style="width: 100%; margin: 0 auto; height: 100px; text-align:center;">
+<div >
+
+
+</div>
+    <div class="card">
+  < <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="{% static 'img/avatar.png' %}" alt="Avatar" class="avatar">
+    </div>
+  <h1>My Profile</h1>
+  <table id="example" class="display" width="100%" cellspacing="0">
+      <thead>
+            <tr>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>username</th>
+                <th>is_active</th>
+                <th>is_staff</th>
+                <th>id</th>
+                <th>position</th>
+                <th>level</th>
+                <th>position id</th>
+                <th>phone_number</th>
+                <th>gender</th>
+                <th>github_user</th>
+                <th>days_to_birthday</th>
+                <th>age</th>
+                 <th>race</th>
+                <th>years_worked</th>
+                <th>birth_date</th>
+                <th>email</th>
+
+            </tr>
+        </thead>
+
+</table>
+
+</div>
+<!--<table id="example" class="display" width="100%">-->
+
+<!--</table>-->
+<!--<div id="chart-line-hitsperday"></div>-->
+<!--<div id="chart-ring-year"></div>-->
+</div>
+
+<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li>
+									<a class="gn-icon gn-icon-download" href="/graph">Employees</a>
+								</li>
+								<li><a class="gn-icon gn-icon-cog">Dashboard</a></li>
+								<li><a class="gn-icon gn-icon-help" href="/profile">My Profile</a></li>
+								<li>
+								</li>
+							</ul>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a href="http://127.0.0.1:8000/">Home</a></li>
+				<li><a class="codrops-icon codrops-icon-prev" href="http://127.0.0.1:8000/"><span>About</span></a></li>
+				<li><a class="codrops-icon codrops-icon-drop" href="http://127.0.0.1:8000/"><span>Contact Us</span></a></li>
+			</ul>
+
+
+
+
+
+		</div><!-- /container -->
+
+        <script src="{% static 'js/classie.js' %}"></script>
+		<!--<script src="js/gnmenu.js"></script>-->
+        <script src="{% static 'js/gnmenu.js' %}"></script>
+        <script src="{% static 'js/classie.js' %}"></script>
+
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+var myProfile={{myProfile|safe}};
+myProfile=[myProfile];
+
+
+
+
+
+
+
+
+console.log([myProfile]);
+
+var ndx = crossfilter(myProfile);
+var parseDate = d3.time.format("%Y-%m-%d").parse;
+
+myProfile.forEach(function(d) {
+	d.birth_date = parseDate(d.birth_date);
+
+});
+
+  $('#example').DataTable( {
+        data: myProfile,
+           columns: [
+        	{ "data": "user.first_name" },
+        	{ "data": "user.last_name" },
+        	{ "data": "user.username" },
+        	{ "data": "user.is_active" },
+        	{ "data": "user.is_staff" },
+        	{ "data": "user.id" },
+        	{ "data": "position.name" },
+        	{ "data": "position.level" },
+        	{ "data": "position.id" },
+            { "data": "phone_number" },
+            { "data": "gender" },
+            { "data": "github_user" },
+            { "data": "days_to_birthday." },
+            { "data": "age" },
+            { "data": "race" },
+            { "data": "years_worked" },
+            { "data": "birth_date" },
+            { "data": "email" }
+        ]
+    } );
+
+
+
+} );
+
+
+
+
+
+</script>
+
 </body>
+
 </html>
