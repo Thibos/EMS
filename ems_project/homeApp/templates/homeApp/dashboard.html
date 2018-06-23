@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thabo's blog</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js" charset="utf-8"></script>
+     <script src = "{% static 'js/crossfilter.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/1.7.5/dc.js"></script>
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>-->
+    <!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/1.7.5/dc.css"/>-->
+	<!--<script src="{% static 'js/d3.js' %}"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/dc/3.0.4/dc.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.2/dc.js"></script>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/3.0.4/dc.css" />
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>-->
+
+
+      <!--<script src = "{% static 'js/dc.js' %}"></script>-->
+
+
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+     <link rel="stylesheet" href="{% static 'css/component.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+
+		<link rel="shortcut icon" href="../favicon.ico">
+
+		<script src="{% static 'js/modernizr.custom.js' %}"></script>
+
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+ <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+ <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
+<!-- optional -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+
+    <style>
+
+        body {
+	        background: #34495e;
+         }
+
+
+    </style>
+</head>
+<body>
+
+<div id="container" style="height: 200px">
+</div>
+<div style="width: 100%; margin: 0 auto; height: 100px; text-align:center;">
+<div >
+
+
+</div>
+
+
+   <div>
+         <div style = "width: 600px;">
+            <div id = "mystats" class = "dc-data-count" style = "float: right">
+               <span class = "filter-count"></span> selected out of <span
+                  class = "total-count"></span> | <a href = "javascript:dc.filterAll();
+                  dc.renderAll();">Reset All</a>
+            </div>
+         </div>
+
+         <div style = "clear: both; padding-top: 20px;">
+            <div class="row" style = "clear: both; padding-top: 20px;">
+                 <div  class="col-sm-4">
+                     <div class="card" >
+                    <div class="card-header">Employees Age Statics</div>
+                    <div class="card-body">
+                        <div id="line"></div>
+
+                    </div>
+                </div>
+                </div>
+                <br>
+                <div  class="col-sm-4">
+                     <div class="card" >
+                    <div class="card-header">Employees Roles Statics</div>
+                    <div class="card-body">
+                        <div id="chart-ring-position"></div>
+
+                    </div>
+                </div>
+                </div>
+
+                <div  class="col-sm-4">
+                     <div class="card" >
+                    <div class="card-header">Employees Years worked Statics</div>
+                    <div class="card-body">
+                         <div id="chart-barChart-position"></div>
+
+                    </div>
+                </div>
+                </div>
+
+            </div>
+
+             <div class="row" style = "clear: both; padding-top: 20px;">
+
+                <div  class="col-sm-4">
+                     <div class="card" >
+                    <div class="card-header">Employees Date of birth Statics</div>
+                    <div class="card-body">
+                         <div id="chart-line-hitsperday"></div>
+
+                    </div>
+                </div>
+                </div>
+                <div  class="col-sm-4">
+                     <div class="card" >
+                    <div class="card-header">Employees Levels Statics</div>
+                    <div class="card-body">
+                        <div id="chart-ring-year"></div>
+
+                    </div>
+                </div>
+                </div>
+                <div  class="col-sm-4">
+                     <div class="card" >
+                    <div class="card-header">Employees Gender Statics</div>
+                    <div class="card-body">
+                        <div id="chart-gender"></div>
+
+                    </div>
+                </div>
+                </div>
+
+
+            </div>
+         </div>
+      </div>
+</div>
+
+<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li>
+									<a class="gn-icon gn-icon-download" href="/graph">Employees</a>
+								</li>
+								<li><a class="gn-icon gn-icon-cog" href="/dashboard">Dashboard</a></li>
+								<li><a class="gn-icon gn-icon-help" href="/profile">My Profile</a></li>
+								<li>
+								</li>
+							</ul>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a href="http://127.0.0.1:8000/">Home</a></li>
+				<li><a class="codrops-icon codrops-icon-prev" href="http://127.0.0.1:8000/"><span>About</span></a></li>
+				<li><a class="codrops-icon codrops-icon-drop" href="http://127.0.0.1:8000/"><span>Contact Us</span></a></li>
+			</ul>
+
+
+
+
+
+		</div><!-- /container -->
+
+        <script src="{% static 'js/classie.js' %}"></script>
+		<!--<script src="js/gnmenu.js"></script>-->
+        <script src="{% static 'js/gnmenu.js' %}"></script>
+        <script src="{% static 'js/classie.js' %}"></script>
+
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+var employees = {{employees|safe}};
+console.log(employees);
+
+//crosfilter features
+function print_filter(filter){
+	var f=eval(filter);
+	if (typeof(f.length) != "undefined") {}else{}
+	if (typeof(f.top) != "undefined") {f=f.top(Infinity);}else{}
+	if (typeof(f.dimension) != "undefined") {f=f.dimension(function(d) { return "";}).top(Infinity);}else{}
+	console.log(filter+"("+f.length+") = "+JSON.stringify(f).replace("[","[\n\t").replace(/}\,/g,"},\n\t").replace("]","\n]"));
+};
+
+var parseDate = d3.time.format("%Y-%m-%d").parse;
+//var birth_dateDim =
+
+employees.forEach(function(d) {
+	d.birth_date = parseDate(d.birth_date);
+	d.Year=d.birth_date.getFullYear();
+
+});
+
+
+
+
+
+var ndx = crossfilter(employees);// start
+//age
+var ageDim = ndx.dimension(function(d) { return d.age; });
+ var ageGroup = ageDim.group();
+print_filter("ageGroup");
+var spenderRowChart = dc.rowChart('#line');
+spenderRowChart
+     .width(400).height(250)
+    .dimension(ageDim)
+    .group(ageGroup)
+    //.ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+    .elasticX(true);
+
+//date of birth
+var dateDim = ndx.dimension(function(d) { return d.birth_date; });
+var DOBgroup=dateDim.group();
+var minDate = dateDim.bottom(1)[0].birth_date;
+var maxDate = dateDim.top(1)[0].birth_date;
+print_filter("DOBgroup");
+var hitslineChart  = dc.lineChart("#chart-line-hitsperday")
+hitslineChart
+	.width(400).height(250)
+	.renderArea(true)
+	//.ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+	.brushOn(false)
+	.legend(dc.legend().x(50).y(10).itemHeight(13).gap(5))
+	.dimension(dateDim)
+	.yAxisLabel("Count")
+   .xAxisLabel("birth_date")
+	.group(DOBgroup,"birth_date")
+	.x(d3.time.scale().domain([minDate,maxDate]));
+
+//gender
+var genderDim =ndx.dimension(function(d){return d.gender});
+var genderGroup = genderDim.group();
+print_filter("genderGroup");
+
+var yearRingChart   = dc.pieChart("#chart-gender");
+yearRingChart
+    .width(250).height(250)
+    .dimension(genderDim)
+    .group(genderGroup)
+    .innerRadius(60);
+
+
+//levels
+var leveDim =ndx.dimension(function(d){return d.position.level});
+var levelGroup = leveDim.group();
+print_filter("levelGroup");
+
+var yearRingChart   = dc.pieChart("#chart-ring-year");
+yearRingChart
+    .width(250).height(250)
+    .dimension(leveDim)
+    //.ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+    .group(levelGroup)
+    .innerRadius(60);
+
+    //position
+var positionDim =ndx.dimension(function(d){return d.position.name});
+var positionGroup = positionDim.group();
+print_filter("positionGroup");
+
+var yearRingChart   = dc.pieChart("#chart-ring-position");
+yearRingChart
+    .width(250).height(250)
+    .dimension(positionDim)
+    .legend(dc.legend().x(80).y(70).itemHeight(13).gap(5))
+    //.renderLabel(false)
+    //.ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+    .group(positionGroup,"Position")
+    .innerRadius(10);
+
+
+    //years_worked
+ var years_workedDim =ndx.dimension(function(d){return d.years_worked});
+var years_workedGroup = years_workedDim.group();
+print_filter("years_workedGroup");
+var barChartt   = dc.barChart("#chart-barChart-position");
+    barChartt
+               .width(400)
+               .height(250)
+               .x(d3.scale.linear().domain([0,100]))
+               .yAxisLabel("Count")
+               .xAxisLabel("years_workedGroup")
+               .elasticY(true)
+               //.ordinalColors(["#56B2EA","#E064CD","#F8B700","#78CC00","#7B71C5"])
+               .elasticX(true)
+               	.brushOn(false)
+               .dimension(years_workedDim)
+               .group(years_workedGroup);
+
+
+
+
+dc.renderAll();
+
+
+
+
+
+} );
+
+
+
+
+
+
+
+</script>
+
+</body>
+
+</html>
